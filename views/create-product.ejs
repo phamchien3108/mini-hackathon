@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header'); -%>
+
+  <body>
+    <%- include('layouts/headerArea'); -%>
+    <!-- End header area -->
+
+    <%- include('layouts/brandingArea'); -%>
+    <!-- End site branding area -->
+
+    <%- include('layouts/navbar'); -%>
+    <!-- End mainmenu area -->
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Create Product</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="container">
+      <div class="row" style="padding:50px;">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <form
+            action="/create-product"
+            method="POST"
+          >
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Tên sản phẩm</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Tên sản phẩm"
+                  id="name-product"
+                  name="name-product"
+                />
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Giá bán</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Giá bán"
+                  id="cost-product"
+                  name="cost-product"
+                />
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Giảm giá</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Giảm giá"
+                  id="discout"
+                  name="discout"
+                />
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Content</label>
+                <textarea
+                  rows="5"
+                  class="form-control"
+                  placeholder="Mô tả sản phẩm"
+                  id="description"
+                  name="description"
+                ></textarea>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Ảnh sản phẩm</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="image-product"
+                  name="image-product"
+                />
+              </div>
+            </div>
+            <br />
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="sendMessageButton"
+              >
+                Thêm sản phẩm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <%- include('layouts/footerTop'); -%>
+    <!-- End footer top area -->
+
+    <%- include('layouts/footerBot'); -%>
+    <!-- End footer bottom area -->
+
+    <%- include('layouts/script'); -%>
+  </body>
+</html>
