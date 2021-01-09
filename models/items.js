@@ -5,6 +5,7 @@ const ItemSchema = new Schema({
     cost_product:Number,
     discout:Number,
     description:String,
+    review: [],
     image_product:String
 })
 const Items = mongoose.model('Items',ItemSchema);
