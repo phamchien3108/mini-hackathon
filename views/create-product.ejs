@@ -30,6 +30,7 @@
           <form
             action="/create-product"
             method="POST"
+            enctype="multipart/form-data"
           >
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
@@ -38,8 +39,8 @@
                   type="text"
                   class="form-control"
                   placeholder="Tên sản phẩm"
-                  id="name-product"
-                  name="name-product"
+                  id="name_product"
+                  name="name_product"
                 />
               </div>
             </div>
@@ -50,8 +51,8 @@
                   type="number"
                   class="form-control"
                   placeholder="Giá bán"
-                  id="cost-product"
-                  name="cost-product"
+                  id="cost_product"
+                  name="cost_product"
                 />
               </div>
             </div>
@@ -85,8 +86,8 @@
                 <input
                   type="file"
                   class="form-control"
-                  id="image-product"
-                  name="image-product"
+                  id="image_product"
+                  name="image_product"
                 />
               </div>
             </div>
