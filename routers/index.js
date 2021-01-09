@@ -9,6 +9,8 @@ const newContactController = require("../controllers/contact");
 const newLoginController = require("../controllers/login");
 const newRegisterController = require("../controllers/register");
 const newCreateProductController = require("../controllers/createProduct");
+const StoreItemsController = require("../controllers/StoreItems");
+
 
 router.get("/cart", newCartController);
 router.get("/", newHomeController);
@@ -19,5 +21,7 @@ router.get("/contact", newContactController);
 router.get("/login", newLoginController);
 router.get("/register", newRegisterController);
 router.get("/create-product", newCreateProductController);
+router.post("/create-product",StoreItemsController);
+
 
 module.exports = router;

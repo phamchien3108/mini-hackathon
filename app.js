@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const port = 5555;
 const ejs = require("ejs");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 app.set("view engine", "ejs");
 
@@ -25,12 +27,23 @@ mongoose
     process.exit();
   });
 
+const db = mongoose.connect;
+module.exports = db;
+
+
+
 //Sử dụng css,img,js trong public
 app.use(express.static("public"));
 // Gửi yêu cầu phân tích kiểu nội dung application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // Gửi yêu cầu phân tích kiểu nội dung application/json
 app.use(bodyParser.json());
+
+
+const fileUpload = require('express-fileupload')
+app.use(fileUpload());
+
+
 
 // Route middlewares
 app.use("/", indexUser);
