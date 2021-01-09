@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 
 
+
 const newCartController = require("../controllers/cart");
 const newHomeController = require("../controllers/home");
 const newShopController = require("../controllers/shop");
@@ -28,7 +29,7 @@ router.get("/login", newLoginController);
 router.get("/register", newRegisterController);
 router.get("/create-product", newCreateProductController);
 router.get("/getbody",function(req , res){
-    console.log(req.body);
+    console.log(req.session.loginUser);
 })
 router.post("/create-product", StoreItemsController);
 

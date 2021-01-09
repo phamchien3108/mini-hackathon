@@ -6,7 +6,10 @@ const mongoose = require("mongoose");
 const port = 5555;
 const ejs = require("ejs");
 const session = require("express-session");
+const cookieParser = require('cookie-parser')
 const MongoStore = require("connect-mongo")(session);
+
+app.use(cookieParser())
 
 app.set("view engine", "ejs");
 
@@ -28,6 +31,7 @@ mongoose
   });
 
 const db = mongoose.connect;
+
 
 app.use(session({
   resave: true, 

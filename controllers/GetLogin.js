@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+
+
 const { registerValidation, loginValidation } = require("../auth/validation");
 
 module.exports = async(req, res) => {
@@ -14,6 +16,12 @@ module.exports = async(req, res) => {
     // Kiểm tra password
     const passLogin = await bcrypt.compare(req.body.password, userLogin.password);
     if (!passLogin) return res.status(400).send("Mật khẩu không hợp lệ");
-  
+
+    req.session.loginUser = {
+        loginName:userLogin.name,
+        loginEmail:userLogin.email,
+    };
+    console.log(req.session.loginUser);
+ 
     res.render("index");
 };
