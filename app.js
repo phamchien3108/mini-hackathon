@@ -27,11 +27,13 @@ mongoose
     process.exit();
   });
 
-const db = mongoose.connect;
-module.exports = db;
-
-
-
+app.use(
+  session({
+    secret: "mySecretKey",
+    resave: true,
+    saveUninitialized: false,
+  })
+);
 //Sử dụng css,img,js trong public
 app.use(express.static("public"));
 // Gửi yêu cầu phân tích kiểu nội dung application/x-www-form-urlencoded
@@ -39,11 +41,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Gửi yêu cầu phân tích kiểu nội dung application/json
 app.use(bodyParser.json());
 
-
-const fileUpload = require('express-fileupload')
+const fileUpload = require("express-fileupload");
 app.use(fileUpload());
-
-
 
 // Route middlewares
 app.use("/", indexUser);
