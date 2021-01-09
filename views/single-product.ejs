@@ -33,20 +33,14 @@
             <div class="row">
 
 
-                <%- include('layouts/searchPro'); -%>
 
 
 
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="product-content-right">
-                        <div class="product-breadcroumb">
-                            <a href="">Home</a>
-                            <a href="">Category Name</a>
-                            <a href="">Sony Smart TV - 2015</a>
-                        </div>
-                        
+
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="product-images">
                                     <div class="product-main-img">
                                         <img src="img/product-2.jpg" alt="">
@@ -60,7 +54,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <div class="product-inner">
                                     <h2 class="product-name">Sony Smart TV - 2015</h2>
                                     <div class="product-inner-price">
@@ -74,14 +68,11 @@
                                         <button class="add_to_cart_button" type="submit">Add to cart</button>
                                     </form>   
                                     
-                                    <div class="product-inner-category">
-                                        <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
-                                    </div> 
-                                    
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
                                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
                                             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                            <li role="presentation"><a href="#review" aria-controls="Review" role="tab" data-toggle="tab">All Reviews</a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
@@ -109,6 +100,10 @@
                                                     <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
                                                     <p><input type="submit" value="Submit"></p>
                                                 </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="review">
+                                                <h2>All review</h2>  
+                                                <p>Render Review</p>
                                             </div>
                                         </div>
                                     </div>
