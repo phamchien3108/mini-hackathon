@@ -6,12 +6,14 @@ const mongoose = require("mongoose");
 const port = 5555;
 const ejs = require("ejs");
 const session = require("express-session");
+const cookieParser = require('cookie-parser')
 const MongoStore = require("connect-mongo")(session);
+
+app.use(cookieParser())
 
 app.set("view engine", "ejs");
 
-// Import routes
-const indexUser = require("./routers/index");
+
 
 // Kết nối database
 mongoose
@@ -29,11 +31,15 @@ mongoose
 
 const db = mongoose.connect;
 
+
 app.use(session({
   resave: true, 
   saveUninitialized: true, 
   secret: 'mysecret', 
   cookie: { maxAge: 60000 }}));
+
+  // Import routes
+const indexUser = require("./routers/index");
 
 //Sử dụng css,img,js trong public
 app.use(express.static("public"));

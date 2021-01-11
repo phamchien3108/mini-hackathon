@@ -1,3 +1,10 @@
+const Items = require("../models/items");
+
 module.exports = (req, res) => {
-  res.render("shop");
+  Items.find({},function(err,items){
+    console.log(items);
+    res.render("shop",{
+      items:items,
+    })
+  })
 };
