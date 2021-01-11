@@ -13,8 +13,7 @@ app.use(cookieParser())
 
 app.set("view engine", "ejs");
 
-// Import routes
-const indexUser = require("./routers/index");
+
 
 // Kết nối database
 mongoose
@@ -38,6 +37,9 @@ app.use(session({
   saveUninitialized: true, 
   secret: 'mysecret', 
   cookie: { maxAge: 60000 }}));
+
+  // Import routes
+const indexUser = require("./routers/index");
 
 //Sử dụng css,img,js trong public
 app.use(express.static("public"));
