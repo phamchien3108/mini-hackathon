@@ -5,7 +5,7 @@ const Cart = require("../function/Cart");
 
 const { registerValidation, loginValidation } = require("../auth/validation");
 
-module.exports = async(req, res) => {
+module.exports = async(req, res , next) => {
     const { error } = loginValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
   
@@ -24,7 +24,7 @@ module.exports = async(req, res) => {
         {
             Ucart : cart
         }
+        console.log(req.session[req.session.uid]);
     }
- 
     res.render("index");
 };

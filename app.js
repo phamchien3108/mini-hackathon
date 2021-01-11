@@ -57,6 +57,7 @@ app.use(fileUpload());
 // Route middlewares
 app.use("/", indexUser);
 
+
 // Lắng nghe các requests
 app.listen(port, function () {
   console.log("Server listening port ", +port);

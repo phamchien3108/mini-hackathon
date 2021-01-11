@@ -12,8 +12,7 @@ module.exports = (req, res) => {
         }
         let amount = (req.body.amount)?req.body.amount:1;
         cart.add(Items,Items._id,amount);
-        req.session[req.session.uid].cart = cart;
+        req.session[req.session.uid].Ucart = cart;
         console.log(cart);
     })
-    
 }

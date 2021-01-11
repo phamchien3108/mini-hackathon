@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const app = express();
 
 
 
@@ -18,6 +18,14 @@ const StoreItemsController = require("../controllers/StoreItems");
 const GetLoginController = require("../controllers/GetLogin");
 const GetRegisterController = require("../controllers/GetRegister");
 const AddToCartController = require("../controllers/AddCart");
+const GetSinglePro = require("../controllers/GetSingle");
+
+
+app.use(function(req,res,next) {
+    res.local.totalQuanty = req.session[req.session.uid].Ucart.Cart.totalQuanty;
+    res.local.totalPrice = req.session[req.session.uid].Ucart.Cart.totalPrice;
+    next();
+})
 
 
 router.get("/cart", newCartController);
@@ -25,6 +33,7 @@ router.get("/", newHomeController);
 router.get("/index", newHomeController);
 router.get("/shop", newShopController);
 router.get("/single-product", newSingleProductController);
+router.get("/single-product/:id", GetSinglePro);
 router.get("/contact", newContactController);
 router.get("/login", newLoginController);
 router.get("/register", newRegisterController);
