@@ -39,11 +39,11 @@
                             <%= items[i].image_product %>
                             " alt="">
                         </div>
-                        <h2><a href="/single-product/<%= items[i]._id %>">
+                        <h2><a href="/<%= items[i]._id %>">
                             <%= items[i].name_product %>
                         </a></h2>
                         <div class="product-carousel-price">
-                            <ins>$<%= items[i].cost_product * (1-(items[i].discout / 100)) %></ins> <del>$<%= items[i].cost_product %></del>
+                            <ins>$<%= items[i].discout %></ins> <del>$<%= items[i].cost_product %></del>
                         </div>  
                         
                         <div class="product-option-shop">
