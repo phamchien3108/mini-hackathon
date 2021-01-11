@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
-const Cart = require("../function/Cart");
+
 
 
 const { registerValidation, loginValidation } = require("../auth/validation");
@@ -17,14 +17,5 @@ module.exports = async(req, res , next) => {
     const passLogin = await bcrypt.compare(req.body.password, userLogin.password);
     if (!passLogin) return res.status(400).send("Mật khẩu không hợp lệ");
 
-    req.session.uid = req.body.email;
-    if(!req.session[req.session.uid]){
-        let cart = new Cart({cartDetail:{},totalQuanty:0,totalPrice:0});
-        req.session[req.session.uid] = 
-        {
-            Ucart : cart
-        }
-        console.log(req.session[req.session.uid]);
-    }
     res.render("index");
 };
