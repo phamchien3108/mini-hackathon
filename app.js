@@ -14,20 +14,17 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // Kết nối database
-mongoose
-  .connect("mongodb://localhost/myData", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(function () {
-    console.log("Successfully connected to the database");
-  })
-  .catch(function (err) {
-    console.log("Could not connect to the database. Exiting now...", err);
-    process.exit();
-  });
-
-const db = mongoose.connect;
+const mongoAtlatUrl =
+  "mongodb+srv://pvchien:chien1ok@cluster0.3ljlk.mongodb.net/myData?retryWrites=true&w=majority";
+try {
+  mongoose.connect(
+    mongoAtlatUrl,
+    { userNewUrlParse: true, useUnifiedTopology: true },
+    () => console.log("Mongoose blog mindx is connected")
+  );
+} catch (e) {
+  console.log("cloud not connect");
+}
 
 app.use(
   session({
@@ -60,5 +57,5 @@ app.use(function (req, res, next) {
 
 // Lắng nghe các requests
 app.listen(process.env.PORT || 3000, function () {
-  console.log("Server listening port ", + process.env.PORT);
+  console.log("Server listening port ", +process.env.PORT);
 });
