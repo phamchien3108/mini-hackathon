@@ -52,6 +52,7 @@ router.get("/shop/:page", (req, res, next) => {
           items,
           current: page,
           pages: Math.ceil(count / perPage),
+          cart:req.session.Ucart
         });
       });
     });
