@@ -21,7 +21,7 @@ const StoreReview = require("../controllers/Storereview");
 const Items = require("../models/items");
 //Faker data
 router.get("/generate-data-fake", async (req, res, next) => {
-  for (let i = 0; i < 96; i++) {
+  for (let i = 0; i < 10; i++) {
     const newItem = new Items();
     newItem.name_product = faker.commerce.productName();
     newItem.cost_product = faker.commerce.price();
@@ -33,12 +33,10 @@ router.get("/generate-data-fake", async (req, res, next) => {
     newItem.save((err) => {
       if (err) return next(err);
     });
-
-    res.redirect("/");
   }
+  res.redirect("/");
 });
 //Pagination
-
 router.get("/shop/:page", (req, res, next) => {
   let perPage = 8;
   let page = req.params.page || 1;
