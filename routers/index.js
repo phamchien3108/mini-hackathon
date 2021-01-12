@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const app = express();
+const faker = require("faker");
 
 const newCartController = require("../controllers/cart");
 const newHomeController = require("../controllers/home");
@@ -17,8 +18,44 @@ const GetRegisterController = require("../controllers/GetRegister");
 const AddToCartController = require("../controllers/AddCart");
 const GetSinglePro = require("../controllers/GetSingle");
 const StoreReview = require("../controllers/Storereview");
+const Items = require("../models/items");
+//Faker data
+router.get("/generate-data-fake", async (req, res, next) => {
+  for (let i = 0; i < 96; i++) {
+    const newItem = new Items();
+    newItem.name_product = faker.commerce.productName();
+    newItem.cost_product = faker.commerce.price();
+    newItem.discout = faker.commerce.price();
+    newItem.description = faker.commerce.productDescription();
+    newItem.image_product = faker.image.sports();
+    newItem.review = [];
 
+    newItem.save((err) => {
+      if (err) return next(err);
+    });
 
+    res.redirect("/");
+  }
+});
+//Pagination
+
+router.get("/shop/:page", (req, res, next) => {
+  let perPage = 8;
+  let page = req.params.page || 1;
+  Items.find()
+    .skip(perPage * page - perPage)
+    .limit(perPage)
+    .exec((err, items) => {
+      Items.countDocuments((err, count) => {
+        if (err) return next(err);
+        res.render("shop", {
+          items,
+          current: page,
+          pages: Math.ceil(count / perPage),
+        });
+      });
+    });
+});
 
 router.get("/cart", newCartController);
 router.get("/", newHomeController);
