@@ -6,14 +6,12 @@ const mongoose = require("mongoose");
 const port = 5555;
 const ejs = require("ejs");
 const session = require("express-session");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 const MongoStore = require("connect-mongo")(session);
 
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
-
-
 
 // Kết nối database
 mongoose
@@ -31,15 +29,16 @@ mongoose
 
 const db = mongoose.connect;
 
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: "mysecret",
+    cookie: { maxAge: 60000 },
+  })
+);
 
-app.use(session({
-  resave: true, 
-  saveUninitialized: true, 
-  secret: 'mysecret', 
-  cookie: { maxAge: 60000 }}));
-
-
-  // Import routes
+// Import routes
 const indexUser = require("./routers/index");
 
 //Sử dụng css,img,js trong public
@@ -49,21 +48,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Gửi yêu cầu phân tích kiểu nội dung application/json
 app.use(bodyParser.json());
 
-
-const fileUpload = require('express-fileupload')
+const fileUpload = require("express-fileupload");
 app.use(fileUpload());
-
-
 
 // Route middlewares
 app.use("/", indexUser);
-app.use(function(req,res,next){
+app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
-})
-
+});
 
 // Lắng nghe các requests
-app.listen(port, function () {
-  console.log("Server listening port ", +port);
+app.listen(process.env.PORT || 3000, function () {
+  console.log("Server listening port ", + process.env.PORT);
 });
