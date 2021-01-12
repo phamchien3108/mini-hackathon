@@ -29,7 +29,7 @@ router.get("/generate-data-fake", async (req, res, next) => {
     newItem.description = faker.commerce.productDescription();
     newItem.image_product = faker.image.sports();
     newItem.review = [];
-
+   
     newItem.save((err) => {
       if (err) return next(err);
     });
