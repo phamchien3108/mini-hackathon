@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Cart = require("../models/Cart");
 const bcrypt = require("bcryptjs");
 
 
@@ -17,5 +18,22 @@ module.exports = async(req, res , next) => {
     const passLogin = await bcrypt.compare(req.body.password, userLogin.password);
     if (!passLogin) return res.status(400).send("Mật khẩu không hợp lệ");
 
-    res.render("index");
+    req.session.UID = userLogin.email;
+    Cart.findOne({user_cart:req.session.UID},function (err,cart) {
+        if(!cart){
+            Cart.create({
+                user_cart:req.session.UID,
+                item:[],
+                totalQuanty:0,
+                totalPrice:0,
+            })
+        }
+    })
+    
+    req.session.Ucart = {
+        item:[],
+        totalQuanty:0,
+        totalPrice:0,
+    }
+    res.redirect("/index");
 };

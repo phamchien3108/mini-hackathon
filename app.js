@@ -38,6 +38,7 @@ app.use(session({
   secret: 'mysecret', 
   cookie: { maxAge: 60000 }}));
 
+
   // Import routes
 const indexUser = require("./routers/index");
 
@@ -56,6 +57,10 @@ app.use(fileUpload());
 
 // Route middlewares
 app.use("/", indexUser);
+app.use(function(req,res,next){
+  res.locals.session = req.session;
+  next();
+})
 
 
 // Lắng nghe các requests

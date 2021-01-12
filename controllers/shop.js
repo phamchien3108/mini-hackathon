@@ -5,6 +5,7 @@ module.exports = (req, res) => {
     console.log(items);
     res.render("shop",{
       items:items,
+      cart:req.session.Ucart,
     })
   })
 };
